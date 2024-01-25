@@ -22,6 +22,8 @@ export class Service {
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,       // documentId
+                
+                // further information in the object
                 {
                     title,
                     content,
@@ -77,10 +79,12 @@ export class Service {
             )
         } catch (error) {
             console.log("Appwrite Service :: getPost :: error", error);
+            return false
         }
     }
 
     // get all the active posts
+    // if there are indexes of the properties, then only u can apply queries here in the parameter to them.
     async getPosts(queries = [Query.equal("status", "active")]) {
         try {
             return await this.databases.listDocuments(
@@ -95,6 +99,7 @@ export class Service {
     }
 
     // file upload services
+    // give the blog of the actual file in the parameter when calling the function
     async uploadFile(file) {
         try {
             return await this.bucket.createFile(
