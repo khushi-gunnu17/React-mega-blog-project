@@ -1,4 +1,4 @@
-import conf from '../conf.js';
+import conf from '../conf/conf.js';
 import { Client, Account, ID, Databases, Storage, Query } from "appwrite";
 
 // Services can be exported to any other application, no need to always use appwrite = vendor locking
